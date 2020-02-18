@@ -3,8 +3,8 @@
 
     <div class="sidenav">
       <div class="login-main-text">
-        <h2> Inicio de sesión</h2>
-        <p>Introduce tus datos para acceder al sitio.</p>
+        <h2>Registro</h2>
+        <p>Introduce tus datos para crear una nueva cuenta </p>
       </div>
     </div>
     <div class="main">
@@ -17,14 +17,32 @@
             <div class="login-form">
               <form>
                 <div class="form-group">
+                  <div class="row">
+                    <div class="col-6">
+                      <label>Nombre</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre"
+                      >
+                    </div>
+                    <div class="col-6">
+                      <label>Apellido</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Apellido"
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label>Correo</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="User Name"
-                    v-model="user.mail"
                   >
-                  {{user.password}}
                 </div>
                 <div class="form-group">
                   <label>Contraseña</label>
@@ -32,21 +50,14 @@
                     type="password"
                     class="form-control"
                     placeholder="Password"
-                    v-model="user.password"
-                    @keypress.enter="login"
                   >
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-secondary"
-                  @click="login"
-                >Login</button>
                 <span class="col-md-3"></span>
                 <button
                   type="submit"
                   class="btn btn-secondary"
-                  @click="register"
-                >Register</button>
+                  @click="singup"
+                >Registrar</button>
               </form>
             </div>
           </div>
@@ -85,22 +96,16 @@ export default {
     // this.login()
   },
   methods: {
-    login () {
+    singup () {
       // Esta variable es de uso local de nuestro metodo.
 
       console.log('soy el login')
       console.log('User from data:' + this.user.email)
       console.log(this.user.password)
-      Auth.login(this.user)
+      Auth.signUp(this.user)
       setTimeout(() => {
         // Luego de iniciar sesión nos envia a la pagina about
         this.$router.push({ name: 'about' })
-      }, 1000)
-    },
-    register () {
-      setTimeout(() => {
-        // Luego de iniciar sesión nos envia a la pagina about
-        this.$router.push({ name: 'singup' })
       }, 1000)
     }
   }
@@ -109,7 +114,7 @@ export default {
 
 <style type="text/css">
 .main-head {
-  height: 150px;
+  height: 50px;
   background: #fff;
 }
 
@@ -126,7 +131,7 @@ export default {
 
 .main {
   padding: 0px 10px;
-  padding-top: 150px;
+  padding-top: 50px;
 }
 @media screen and (max-height: 450px) {
   .sidenav {
